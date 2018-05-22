@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context allowCasualMultipartParsing="true">
+
+    <Resource name="jdbc/DBPoolConnect"
+              auth="Container"
+              type="javax.sql.DataSource"
+              validationQuery="SELECT 1"
+              validationInterval="30000"
+              maxTotal="100"
+              minIdle="10"
+              maxWaitMillis="10000"
+              initialSize="10"
+              jmxEnabled="true"
+              username="root"
+              password="root"
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/library"/>
+
+    <Realm className="org.apache.catalina.realm.DataSourceRealm"
+           dataSourceName="jdbc/DBPoolConnect"
+           roleNameCol="role_name" userCredCol="user_pass" userNameCol="id"
+           userRoleTable="user_roles" userTable="users" localDataSource="true">
+        <CredentialHandler className="org.apache.catalina.realm.MessageDigestCredentialHandler"
+                           algorithm="MD5" iterations="1" saltLength="0"  />
+    </Realm>
+
+</Context>
+
